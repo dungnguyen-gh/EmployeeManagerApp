@@ -1,0 +1,18 @@
+﻿<Window x:Class="WpfApp2_Data.UnsavedChangesDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStartupLocation="CenterOwner"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Height="150" Width="300"
+        ShowInTaskbar="False"
+        Topmost="True">
+    <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="10" Background="White">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="You are editing this employee. Please save before switching."
+                       TextWrapping="Wrap" FontSize="14" Margin="0,0,0,15"
+                       TextAlignment="Center" Width="260" />
+            <Button Content="OK" Width="80" Click="Ok_Click" HorizontalAlignment="Center"/>
+        </StackPanel>
+    </Border>
+</Window>
