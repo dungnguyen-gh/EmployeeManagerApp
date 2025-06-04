@@ -11,8 +11,8 @@
       "RelativeMoniker": "D:0:0:{6B4DA1AA-CFAD-4A2E-8FAC-7DDE7C8FEDB2}|WpfApp2_Data\\WpfApp2_Data.csproj|solutionrelative:wpfapp2_data\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6B4DA1AA-CFAD-4A2E-8FAC-7DDE7C8FEDB2}|WpfApp2_Data\\WpfApp2_Data.csproj|d:\\unitytutorial\\c#tutorials\\files\\wpfapp2_data\\wpfapp2_data\\unsavedchangesdialog.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{6B4DA1AA-CFAD-4A2E-8FAC-7DDE7C8FEDB2}|WpfApp2_Data\\WpfApp2_Data.csproj|solutionrelative:wpfapp2_data\\unsavedchangesdialog.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{6B4DA1AA-CFAD-4A2E-8FAC-7DDE7C8FEDB2}|WpfApp2_Data\\WpfApp2_Data.csproj|d:\\unitytutorial\\c#tutorials\\files\\wpfapp2_data\\wpfapp2_data\\datamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B4DA1AA-CFAD-4A2E-8FAC-7DDE7C8FEDB2}|WpfApp2_Data\\WpfApp2_Data.csproj|solutionrelative:wpfapp2_data\\datamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6B4DA1AA-CFAD-4A2E-8FAC-7DDE7C8FEDB2}|WpfApp2_Data\\WpfApp2_Data.csproj|d:\\unitytutorial\\c#tutorials\\files\\wpfapp2_data\\wpfapp2_data\\unsavedchangesdialog.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
@@ -24,10 +24,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{6B4DA1AA-CFAD-4A2E-8FAC-7DDE7C8FEDB2}|WpfApp2_Data\\WpfApp2_Data.csproj|d:\\unitytutorial\\c#tutorials\\files\\wpfapp2_data\\wpfapp2_data\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6B4DA1AA-CFAD-4A2E-8FAC-7DDE7C8FEDB2}|WpfApp2_Data\\WpfApp2_Data.csproj|solutionrelative:wpfapp2_data\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6B4DA1AA-CFAD-4A2E-8FAC-7DDE7C8FEDB2}|WpfApp2_Data\\WpfApp2_Data.csproj|d:\\unitytutorial\\c#tutorials\\files\\wpfapp2_data\\wpfapp2_data\\datamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6B4DA1AA-CFAD-4A2E-8FAC-7DDE7C8FEDB2}|WpfApp2_Data\\WpfApp2_Data.csproj|solutionrelative:wpfapp2_data\\datamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -37,68 +33,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "UnsavedChangesDialog.xaml.cs",
-              "DocumentMoniker": "D:\\unitytutorial\\C#Tutorials\\Files\\WpfApp2_Data\\WpfApp2_Data\\UnsavedChangesDialog.xaml.cs",
-              "RelativeDocumentMoniker": "WpfApp2_Data\\UnsavedChangesDialog.xaml.cs",
-              "ToolTip": "D:\\unitytutorial\\C#Tutorials\\Files\\WpfApp2_Data\\WpfApp2_Data\\UnsavedChangesDialog.xaml.cs",
-              "RelativeToolTip": "WpfApp2_Data\\UnsavedChangesDialog.xaml.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAA4wB4AAAAkAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "D:\\unitytutorial\\C#Tutorials\\Files\\WpfApp2_Data\\WpfApp2_Data\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "WpfApp2_Data\\MainWindow.xaml.cs",
+              "ToolTip": "D:\\unitytutorial\\C#Tutorials\\Files\\WpfApp2_Data\\WpfApp2_Data\\MainWindow.xaml.cs",
+              "RelativeToolTip": "WpfApp2_Data\\MainWindow.xaml.cs",
+              "ViewState": "AgIAADkAAAAAAAAAAADwv0kAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-30T02:40:17.505Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UnsavedChangesDialog.xaml",
-              "DocumentMoniker": "D:\\unitytutorial\\C#Tutorials\\Files\\WpfApp2_Data\\WpfApp2_Data\\UnsavedChangesDialog.xaml",
-              "RelativeDocumentMoniker": "WpfApp2_Data\\UnsavedChangesDialog.xaml",
-              "ToolTip": "D:\\unitytutorial\\C#Tutorials\\Files\\WpfApp2_Data\\WpfApp2_Data\\UnsavedChangesDialog.xaml",
-              "RelativeToolTip": "WpfApp2_Data\\UnsavedChangesDialog.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-05-30T02:39:24.88Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "XamlReader.cs",
-              "DocumentMoniker": "C:\\Users\\DP251\\AppData\\Local\\Temp\\.vsdbgsrc\\eb3a3275bba5aec1ff6a74da50ecc2ce6a9b665f26d69e00aefecac08c152790\\XamlReader.cs",
-              "ToolTip": "C:\\Users\\DP251\\AppData\\Local\\Temp\\.vsdbgsrc\\eb3a3275bba5aec1ff6a74da50ecc2ce6a9b665f26d69e00aefecac08c152790\\XamlReader.cs",
-              "ViewState": "AgIAAKoBAAAAAAAAAAArwLQBAAACAAAAAQAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-29T06:53:09.687Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "DataManager.cs",
-              "DocumentMoniker": "D:\\unitytutorial\\C#Tutorials\\Files\\WpfApp2_Data\\WpfApp2_Data\\DataManager.cs",
-              "RelativeDocumentMoniker": "WpfApp2_Data\\DataManager.cs",
-              "ToolTip": "D:\\unitytutorial\\C#Tutorials\\Files\\WpfApp2_Data\\WpfApp2_Data\\DataManager.cs",
-              "RelativeToolTip": "WpfApp2_Data\\DataManager.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAAgwBUAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-29T02:13:41.059Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Employee.cs",
-              "DocumentMoniker": "D:\\unitytutorial\\C#Tutorials\\Files\\WpfApp2_Data\\WpfApp2_Data\\Employee.cs",
-              "RelativeDocumentMoniker": "WpfApp2_Data\\Employee.cs",
-              "ToolTip": "D:\\unitytutorial\\C#Tutorials\\Files\\WpfApp2_Data\\WpfApp2_Data\\Employee.cs",
-              "RelativeToolTip": "WpfApp2_Data\\Employee.cs",
-              "ViewState": "AgIAACAAAAAAAAAAAAAwwC0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-29T02:04:25.046Z",
+              "WhenOpened": "2025-06-03T09:38:46.587Z",
               "EditorCaption": ""
             },
             {
@@ -110,21 +57,54 @@
               "ToolTip": "D:\\unitytutorial\\C#Tutorials\\Files\\WpfApp2_Data\\WpfApp2_Data\\MainWindow.xaml",
               "RelativeToolTip": "WpfApp2_Data\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-05-28T08:46:28.588Z",
+              "WhenOpened": "2025-06-03T09:38:29.508Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "D:\\unitytutorial\\C#Tutorials\\Files\\WpfApp2_Data\\WpfApp2_Data\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "WpfApp2_Data\\MainWindow.xaml.cs",
-              "ToolTip": "D:\\unitytutorial\\C#Tutorials\\Files\\WpfApp2_Data\\WpfApp2_Data\\MainWindow.xaml.cs",
-              "RelativeToolTip": "WpfApp2_Data\\MainWindow.xaml.cs",
-              "ViewState": "AgIAACABAAAAAAAAAAAmwC4BAAAsAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "UnsavedChangesDialog.xaml.cs",
+              "DocumentMoniker": "D:\\unitytutorial\\C#Tutorials\\Files\\WpfApp2_Data\\WpfApp2_Data\\UnsavedChangesDialog.xaml.cs",
+              "RelativeDocumentMoniker": "WpfApp2_Data\\UnsavedChangesDialog.xaml.cs",
+              "ToolTip": "D:\\unitytutorial\\C#Tutorials\\Files\\WpfApp2_Data\\WpfApp2_Data\\UnsavedChangesDialog.xaml.cs",
+              "RelativeToolTip": "WpfApp2_Data\\UnsavedChangesDialog.xaml.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAB4AAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T08:46:26.819Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-30T02:40:17.505Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "XamlReader.cs",
+              "DocumentMoniker": "C:\\Users\\DP251\\AppData\\Local\\Temp\\.vsdbgsrc\\eb3a3275bba5aec1ff6a74da50ecc2ce6a9b665f26d69e00aefecac08c152790\\XamlReader.cs",
+              "ToolTip": "C:\\Users\\DP251\\AppData\\Local\\Temp\\.vsdbgsrc\\eb3a3275bba5aec1ff6a74da50ecc2ce6a9b665f26d69e00aefecac08c152790\\XamlReader.cs",
+              "ViewState": "AgIAANIAAAAAAAAAAAArwLQBAAACAAAAAQAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-29T06:53:09.687Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DataManager.cs",
+              "DocumentMoniker": "D:\\unitytutorial\\C#Tutorials\\Files\\WpfApp2_Data\\WpfApp2_Data\\DataManager.cs",
+              "RelativeDocumentMoniker": "WpfApp2_Data\\DataManager.cs",
+              "ToolTip": "D:\\unitytutorial\\C#Tutorials\\Files\\WpfApp2_Data\\WpfApp2_Data\\DataManager.cs",
+              "RelativeToolTip": "WpfApp2_Data\\DataManager.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAgwBcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-29T02:13:41.059Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Employee.cs",
+              "DocumentMoniker": "D:\\unitytutorial\\C#Tutorials\\Files\\WpfApp2_Data\\WpfApp2_Data\\Employee.cs",
+              "RelativeDocumentMoniker": "WpfApp2_Data\\Employee.cs",
+              "ToolTip": "D:\\unitytutorial\\C#Tutorials\\Files\\WpfApp2_Data\\WpfApp2_Data\\Employee.cs",
+              "RelativeToolTip": "WpfApp2_Data\\Employee.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAwwC0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-29T02:04:25.046Z"
             }
           ]
         }

@@ -52,7 +52,7 @@ namespace WpfApp2_Data {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/WpfApp2_Data;component/unsavedchangesdialog.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/WpfApp2_Data;V1.0.0.0;component/unsavedchangesdialog.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\UnsavedChangesDialog.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

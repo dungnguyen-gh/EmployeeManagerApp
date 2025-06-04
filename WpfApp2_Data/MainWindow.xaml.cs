@@ -23,7 +23,6 @@ namespace WpfApp2_Data
         private Employee? _selectedEmployee;
 
         private string? _selectedDepartment;
-        private string? _previousSelectedDepartment;
 
         private Employee? _editBackup;
 
@@ -48,6 +47,7 @@ namespace WpfApp2_Data
             {
                 if (value == _selectedEmployee) return;
 
+                // Block if unsaved exist
                 if (!_suppressUnsavedCheck && _selectedEmployee != null && HasUnsavedChanges())
                 {
                     var dialog = new UnsavedChangesDialog { Owner = this };
@@ -57,6 +57,7 @@ namespace WpfApp2_Data
                     return;
                 }
 
+                // Handle cancelling a new employee
                 if (_isEditingNew && _newEmployeeDraft != null && value != _newEmployeeDraft)
                 {
                     // User abandoned the new employee
@@ -65,7 +66,12 @@ namespace WpfApp2_Data
                 }
 
                 _selectedEmployee = value;
-                _isEditingNew = false;
+
+                // Clear editing flag if don't have the new draft
+                if (value != _newEmployeeDraft)
+                {
+                    _isEditingNew = false;
+                }
 
                 if (_selectedEmployee != null)
                 {
@@ -83,29 +89,9 @@ namespace WpfApp2_Data
             {
                 if (value == _selectedDepartment) return;
 
-                // Store the current value before change
-                var attemptedValue = value;
-                var current = _selectedDepartment;
-
-                // Check for unsaved changes
-                if (_selectedEmployee != null && HasUnsavedChanges())
-                {
-                    // Revert selection immediately
-                    Application.Current.Dispatcher.InvokeAsync(() =>
-                    {
-                        _selectedDepartment = current;
-                        OnPropertyChanged(nameof(SelectedDepartment));
-                    });
-
-                    var dialog = new UnsavedChangesDialog { Owner = this };
-                    dialog.ShowDialog();
-                    return;
-                }
-
-                // No unsaved changes; apply new selection
-                _selectedDepartment = attemptedValue;
-                FilterEmployees();
+                _selectedDepartment = value;
                 OnPropertyChanged();
+                FilterEmployees();
             }
         }
 
@@ -181,22 +167,36 @@ namespace WpfApp2_Data
                 Employees = new ObservableCollection<Employee>(
                     _employees.Where(e => e.Department == SelectedDepartment));
             }
+
+            // Make sure SelectedEmployee is still selected if it fits filter
+            if (_selectedEmployee != null && Employees.Contains(_selectedEmployee))
+            {
+                SelectedEmployee = _selectedEmployee;
+            }
+            else
+            {
+                SelectedEmployee = null;
+            }
         }
 
         private void AddNew_Click(object sender, RoutedEventArgs e)
         {
-            if (_isEditingNew)
+            // If the user is editing an existing or new employee, show dialog
+            if (_isEditingNew || (SelectedEmployee != null && HasUnsavedChanges()))
             {
-                MessageBox.Show("Please complete editing and save the current new employee before adding another.",
-                    "Action Required", MessageBoxButton.OK, MessageBoxImage.Warning);
+                var dialog = new UnsavedChangesDialog
+                {
+                    Owner = this
+                };
+
+                dialog.ShowDialog();
+
                 return;
             }
+            // Mark editing
+            _isEditingNew = true;
 
-            if (SelectedEmployee != null && HasUnsavedChanges())
-            {
-                if (!PromptUnsavedChanges()) return;
-            }
-            
+            // Create new employee draft
             _newEmployeeDraft = new Employee
             {
                 Department = "Department",
@@ -207,16 +207,20 @@ namespace WpfApp2_Data
                 StartDate = DateTime.Today
             };
 
-            _isEditingNew = true;
+            // Add draft to the list
+            _employees.Add(_newEmployeeDraft);
 
-            // Temporarily suppress unsaved check to avoid triggering dialog again
+            // Ensure the department is set to show all employees
             _suppressUnsavedCheck = true;
+            SelectedDepartment = "All Departments";
+            _suppressUnsavedCheck = false;
 
-            // Temporarily add to the filtered list so UI can bind to it
-            _filteredEmployees.Add(_newEmployeeDraft);
+            // Refresh filter to make sure draft is shown
+            FilterEmployees();
+
+            // Select new employee
             SelectedEmployee = _newEmployeeDraft;
 
-            _suppressUnsavedCheck = false;
         }
         private void Remove_Click(object sender, RoutedEventArgs e)
         {
@@ -269,25 +273,30 @@ namespace WpfApp2_Data
                         "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
-                // Only add to _employees if it's not already there
                 if (!_employees.Contains(_newEmployeeDraft))
                 {
-                    // Add to the main list
                     _employees.Add(_newEmployeeDraft);
                 }
-
                 _isEditingNew = false;
                 _newEmployeeDraft = null;
+                // Backup newly added employee
+                BackupSelected();
+            }
+            // Back up after edit
+            if (SelectedEmployee != null)
+            {
+                BackupSelected();
             }
 
+            // Save and notify
             _dataManager.SaveEmployees(_employees);
             MessageBox.Show("Employees saved!");
 
-            // Refresh backup
-            BackupSelected();
+            UpdateDepartments();
 
-            UpdateDepartments(); // ensure departments are synced
-            FilterEmployees(); // Refresh display
+            FilterEmployees();
+            // Reselect after save to persist selection
+            SelectedEmployee = _selectedEmployee;
         }
         private void EmployeeListBox_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -306,7 +315,17 @@ namespace WpfApp2_Data
                 }
             }
         }
-
+        private void DepartmentComboBox_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (_selectedEmployee != null && HasUnsavedChanges())
+            {
+                // Prevent ComboBox from opening
+                e.Handled = true;
+                
+                var dialog = new UnsavedChangesDialog { Owner = this };
+                dialog.ShowDialog();
+            }
+        }
         public event PropertyChangedEventHandler? PropertyChanged;
         private void OnPropertyChanged([CallerMemberName] string? prop = null)
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
