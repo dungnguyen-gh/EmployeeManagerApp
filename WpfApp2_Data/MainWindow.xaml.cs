@@ -32,6 +32,9 @@ namespace WpfApp2_Data
 
         private Employee? _newEmployeeDraft;
 
+        private string? _searchText;
+        private bool _isSearchActive;
+
         public ObservableCollection<Employee> Employees
         {
             get => _filteredEmployees;
@@ -89,12 +92,51 @@ namespace WpfApp2_Data
             {
                 if (value == _selectedDepartment) return;
 
+                if (!_suppressUnsavedCheck && HasUnsavedChanges())
+                {
+                    var dialog = new UnsavedChangesDialog { Owner = this };
+                    dialog.ShowDialog();
+                    OnPropertyChanged(nameof(SelectedDepartment)); // Revert binding
+                    return;
+                }
+
                 _selectedDepartment = value;
                 OnPropertyChanged();
+
+                SearchText = string.Empty;
+
                 FilterEmployees();
             }
         }
+        public string? SearchText
+        {
+            get => _searchText;
+            set
+            {
+                if (_searchText != value)
+                {
+                    _searchText = value;
 
+                    // update clear button enabled state
+                    IsSearchActive = !string.IsNullOrWhiteSpace(_searchText); 
+
+                    OnPropertyChanged();
+                    FilterEmployees();
+                }
+            }
+        }
+        public bool IsSearchActive
+        {
+            get => _isSearchActive;
+            set
+            {
+                if (_isSearchActive != value)
+                {
+                    _isSearchActive = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
         public MainWindow()
         {
             InitializeComponent();
@@ -108,6 +150,7 @@ namespace WpfApp2_Data
         }
         private bool HasUnsavedChanges()
         {
+            if (_isEditingNew) return true; // New employee have not saved yet
             if (_editBackup == null || SelectedEmployee == null) return false;
 
             return _editBackup.Department != SelectedEmployee.Department ||
@@ -158,24 +201,34 @@ namespace WpfApp2_Data
         }
         private void FilterEmployees()
         {
-            if (string.IsNullOrWhiteSpace(SelectedDepartment) || SelectedDepartment == "All Departments")
+            IEnumerable<Employee> filtered = _employees;
+
+            // Filter by selected department
+            if (!string.IsNullOrWhiteSpace(SelectedDepartment) && SelectedDepartment != "All Departments")
             {
-                Employees = new ObservableCollection<Employee>(_employees);
-            }
-            else
-            {
-                Employees = new ObservableCollection<Employee>(
-                    _employees.Where(e => e.Department == SelectedDepartment));
+                filtered = filtered.Where(e => e.Department == SelectedDepartment);
             }
 
-            // Make sure SelectedEmployee is still selected if it fits filter
+            // Filter by search text (name)
+            if (!string.IsNullOrWhiteSpace(SearchText))
+            {
+                string searchLower = SearchText.ToLower();
+                filtered = filtered.Where(e => e.Name != null && e.Name.ToLower().Contains(searchLower));
+            }
+
+            Employees = new ObservableCollection<Employee>(filtered);
+
             if (_selectedEmployee != null && Employees.Contains(_selectedEmployee))
             {
-                SelectedEmployee = _selectedEmployee;
+                // Do nothing – keep selection
             }
             else
             {
-                SelectedEmployee = null;
+                // Clear selection silently without triggering logic
+                _suppressUnsavedCheck = true;
+                _selectedEmployee = null;
+                OnPropertyChanged(nameof(SelectedEmployee));
+                _suppressUnsavedCheck = false;
             }
         }
 
@@ -263,7 +316,7 @@ namespace WpfApp2_Data
         {
             if (_isEditingNew && _newEmployeeDraft != null)
             {
-                // validate required fields
+                // Validate required fields
                 if (string.IsNullOrWhiteSpace(_newEmployeeDraft.Department) ||
                     string.IsNullOrWhiteSpace(_newEmployeeDraft.Name) ||
                     string.IsNullOrWhiteSpace(_newEmployeeDraft.Email) ||
@@ -273,30 +326,46 @@ namespace WpfApp2_Data
                         "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
+
+                // If it's not already in the main employee list, add it
                 if (!_employees.Contains(_newEmployeeDraft))
                 {
                     _employees.Add(_newEmployeeDraft);
                 }
+
+                // Clear editing state for new employee
                 _isEditingNew = false;
+                _selectedEmployee = _newEmployeeDraft;  // Set as current selected
                 _newEmployeeDraft = null;
-                // Backup newly added employee
-                BackupSelected();
+
+                BackupSelected();  // Save backup of new employee
             }
-            // Back up after edit
-            if (SelectedEmployee != null)
+            else if (SelectedEmployee != null)
             {
-                BackupSelected();
+                BackupSelected();  // Save backup of existing employee
             }
 
-            // Save and notify
+            // Save changes to data source
             _dataManager.SaveEmployees(_employees);
+
+            // Notify user
             MessageBox.Show("Employees saved!");
 
+            // Refresh UI
             UpdateDepartments();
-
             FilterEmployees();
-            // Reselect after save to persist selection
-            SelectedEmployee = _selectedEmployee;
+
+            // Reselect saved employee if still present
+            if (_selectedEmployee != null && _employees.Contains(_selectedEmployee))
+            {
+                _suppressUnsavedCheck = true;
+                SelectedEmployee = _selectedEmployee;
+                _suppressUnsavedCheck = false;
+            }
+            else
+            {
+                SelectedEmployee = null;
+            }
         }
         private void EmployeeListBox_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -317,7 +386,7 @@ namespace WpfApp2_Data
         }
         private void DepartmentComboBox_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (_selectedEmployee != null && HasUnsavedChanges())
+            if (HasUnsavedChanges())
             {
                 // Prevent ComboBox from opening
                 e.Handled = true;
@@ -325,6 +394,20 @@ namespace WpfApp2_Data
                 var dialog = new UnsavedChangesDialog { Owner = this };
                 dialog.ShowDialog();
             }
+        }
+        private void SearchTextBox_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (HasUnsavedChanges())
+            {
+                e.Handled = true;
+                var dialog = new UnsavedChangesDialog { Owner = this };
+                dialog.ShowDialog();
+            }
+        }
+
+        private void ClearSearch_Click(object sender, RoutedEventArgs e)
+        {
+            SearchText = string.Empty;
         }
         public event PropertyChangedEventHandler? PropertyChanged;
         private void OnPropertyChanged([CallerMemberName] string? prop = null)

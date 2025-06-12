@@ -19,13 +19,30 @@
                       SelectedItem="{Binding SelectedDepartment, Mode=TwoWay}" 
                       PreviewMouseDown="DepartmentComboBox_PreviewMouseDown"
                       Margin="0,5,0,10"/>
+            
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <TextBlock Text="Search: " VerticalAlignment="Center" Margin="0,0,5,0" />
 
+                <TextBox Width="200"
+                         Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                         VerticalAlignment="Center"
+                         Name="SearchTextBox"
+                         PreviewMouseDown="SearchTextBox_PreviewMouseDown"
+                         Margin="0,0,5,0" />
+
+                <Button Content=" X "
+                        VerticalAlignment="Center"
+                        Click="ClearSearch_Click"
+                        IsEnabled="{Binding IsSearchActive}" />
+            </StackPanel>
+            
             <ListBox ItemsSource="{Binding Employees}" 
                      DisplayMemberPath="Name" 
                      SelectedItem="{Binding SelectedEmployee, Mode=TwoWay}" 
                      Height="300"
                      PreviewMouseDown="EmployeeListBox_PreviewMouseDown"
                      Name="EmployeeListBox" />
+            
         </StackPanel>
 
         <!-- Right Panel -->
