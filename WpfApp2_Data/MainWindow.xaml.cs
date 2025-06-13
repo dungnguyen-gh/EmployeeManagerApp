@@ -366,6 +366,7 @@ namespace WpfApp2_Data
             {
                 SelectedEmployee = null;
             }
+            Keyboard.ClearFocus();
         }
         private void EmployeeListBox_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
